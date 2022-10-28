@@ -10,6 +10,8 @@ paperless:
   git:
     url: https://github.com/GupThePug/paperless-package.git
 ```
+- add firebase configuration file "firebase_paperless_options.dart" to the lib folder in your flutter project 
+- (do not change these configurations, as they connect to the paperless database)
 
 - agregar versión minimo de sdk de Android
 - agregar multiplex en app cliente

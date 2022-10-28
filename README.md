@@ -1,9 +1,16 @@
 TODO: Put a short description of the package here that helps potential users
 know whether this package might be useful for them.
 
-## Intalación de librería
+## Library Installation 
 
-- agregar dependencia en yaml
+- add the following config to the pubspec.yaml file in your project:
+
+```dart
+paperless:
+  git:
+    url: https://github.com/GupThePug/paperless-package.git
+```
+
 - agregar versión minimo de sdk de Android
 - agregar multiplex en app cliente
 - agregar archivo de configuración para firebase

@@ -25,7 +25,7 @@ import 'package:path/path.dart';
 final formStreamProvider = StreamProvider.autoDispose
     .family<PaperlessForm, PaperlessRequest>((ref, baseRequest) {
   final firebase = ref.watch(firebaseProvider(baseRequest.appName));
-  return firebase.getFormById(baseRequest.formId);
+  return firebase.getFormById(baseRequest.formId, baseRequest.companyId);
 });
 
 class FormWidgetPage extends ConsumerStatefulWidget {

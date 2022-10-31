@@ -1,3 +1,13 @@
+/* ---- @SOFTTEK
+Paperless
+version: 0.0.2
+Non-public test version
+
+Collaborators:
+---@GupThePug
+---@BetoMacias
+
+* */
 import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
@@ -21,9 +31,10 @@ class FirebaseService {
   final _firestoreService = FirestoreService.instance;
   final _storageService = StorageService.instance;
 
-  Stream<PaperlessForm> getFormById(String formId) =>
+  //Updated this form path to get the right forms by company ID
+  Stream<PaperlessForm> getFormById(String formId, String companyId) =>
       _firestoreService.documentStream(
-        path: '/Formularios',
+        path: '/Empresas/' + companyId + '/Formularios',
         idDoc: formId,
         builder: (data, _) => PaperlessForm.fromMap(data),
       );
@@ -74,3 +85,9 @@ class FirebaseService {
         saveInPaperless: saveInPaperless,
       );
 }
+
+/* ---- DEVELOPER COMMENTS
+* @GupThePug: this file is responsible for querying and getting
+* docs. It has been updated to work with a new version of the
+* paperless database
+* */

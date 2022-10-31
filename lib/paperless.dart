@@ -1,3 +1,12 @@
+/* ---- @SOFTTEK
+* ----- Paperless
+* ----- version: 0.0.2
+* ----- Non-public test version
+
+* ----- Collaborators:
+* ----- @GupThePug
+* ----- @BetoMacias 
+* */
 library paperless;
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,6 +60,7 @@ class FlutterPaperless extends ConsumerWidget {
     required this.saveInPaperless,
     required this.requesterInfo,
     required this.formId,
+    required this.companyId,
     this.submitted,
     this.loadingWidget,
     this.notifyErrors,
@@ -63,6 +73,7 @@ class FlutterPaperless extends ConsumerWidget {
   final bool saveInPaperless;
   final Function? submitted;
   final String formId;
+  final String companyId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -100,6 +111,7 @@ class FlutterPaperless extends ConsumerWidget {
         requesterInfo: requesterInfo,
         appName: paperlessConfig.appName,
         formId: formId,
+        companyId: companyId
       ),
       loadingWidget: loadingWidget,
       notifyErrors: notifyErrors,

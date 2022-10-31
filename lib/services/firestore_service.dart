@@ -1,3 +1,14 @@
+/* ---- @SOFTTEK
+Paperless
+version: 0.0.2
+Non-public test version
+
+Collaborators:
+---@GupThePug
+---@BetoMacias
+
+* */
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 

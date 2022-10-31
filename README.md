@@ -1,7 +1,7 @@
 TODO: Put a short description of the package here that helps potential users
 know whether this package might be useful for them.
 
-## Library Installation 
+##Installation 
 
 - add the following config to the pubspec.yaml file in your project:
 
@@ -23,7 +23,10 @@ paperless:
 TODO: List prerequisites and provide or point to information on how to
 start using the package.
 
-## Usage
+## Developer guide 
+-[Forms]
+
+
 
 TODO: Include short and useful examples for package users. Add longer examples
 to `/example` folder. 

@@ -34,7 +34,7 @@ class FirebaseService {
   //Updated this form path to get the right forms by company ID
   Stream<PaperlessForm> getFormById(String formId, String companyId) =>
       _firestoreService.documentStream(
-        path: '/Empresas/' + companyId + '/Formularios',
+        path: '/Empresas/' + companyId + '/Formularios/',
         idDoc: formId,
         builder: (data, _) => PaperlessForm.fromMap(data),
       );

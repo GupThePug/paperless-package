@@ -58,7 +58,7 @@ class FlutterPaperless extends ConsumerWidget {
     Key? key,
     required this.paperlessConfig,
     required this.saveInPaperless,
-    required this.requesterInfo,
+    //required this.requesterInfo,
     required this.formId,
     required this.companyId,
     this.submitted,
@@ -68,7 +68,7 @@ class FlutterPaperless extends ConsumerWidget {
 
   final Function(Object o, StackTrace? s)? notifyErrors;
   final PaperlessConfig paperlessConfig;
-  final RequesterInfo requesterInfo;
+  //final RequesterInfo requesterInfo;
   final Widget? loadingWidget;
   final bool saveInPaperless;
   final Function? submitted;
@@ -108,7 +108,7 @@ class FlutterPaperless extends ConsumerWidget {
     return FormWidgetPage(
       basicRequest: PaperlessRequest(
         saveInPaperless: saveInPaperless,
-        requesterInfo: requesterInfo,
+        //requesterInfo: requesterInfo,
         appName: paperlessConfig.appName,
         formId: formId,
         companyId: companyId

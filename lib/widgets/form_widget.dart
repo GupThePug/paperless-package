@@ -553,6 +553,7 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
                 item.propierties["answer"] as List<dynamic>?,
                 true,
                 widget.basicRequest.formId,
+                widget.basicRequest.companyId,
                 item.id,
               );
               setState(() {});
@@ -665,6 +666,7 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
                   item.propierties["answer"] as List<dynamic>?,
                   false,
                   widget.basicRequest.formId,
+                  widget.basicRequest.companyId,
                   item.id,
                 );
                 setState(() {});
@@ -866,11 +868,13 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
     List<dynamic>? answer,
     bool isMultiFile,
     String formId,
+    String companyId,
     String controlId,
   ) async {
     final firebase = ref.read(firebaseProvider(widget.basicRequest.appName));
     answerId ??= await firebase.getDocumentId(
       formId: formId,
+      companyId: companyId,
       saveInPaperless: widget.basicRequest.saveInPaperless,
     );
 

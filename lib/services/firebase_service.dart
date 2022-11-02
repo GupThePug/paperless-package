@@ -65,10 +65,12 @@ class FirebaseService {
 
   Future<String> getDocumentId({
     required String formId,
+    required String companyId,
     required bool saveInPaperless,
   }) =>
       _firestoreService.getDocumentId(
         formId: formId,
+        companyId: companyId,
         saveInPaperless: saveInPaperless,
       );
 

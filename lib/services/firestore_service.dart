@@ -57,6 +57,7 @@ class FirestoreService {
 
   Future<String> getDocumentId({
     required String formId,
+    required String companyId,
     required bool saveInPaperless,
   }) async {
     FirebaseFirestore instance = saveInPaperless
@@ -64,8 +65,8 @@ class FirestoreService {
         : FirebaseFirestore.instance;
 
     final formCollection =
-        instance.collection('Formularios').doc(formId).collection("Respuestas");
-    return formCollection.doc().id;
+        instance.collection('Empresas').doc(companyId).collection("Formularios");
+    return formCollection.doc(formId).id;
   }
 
   Future<void> createData<T>({

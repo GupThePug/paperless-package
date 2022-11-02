@@ -3,35 +3,35 @@ import 'package:paperless/model/response.dart';
 class Answer {
   const Answer({
     required this.componentes,
-    //required this.creator,
+    required this.creator,
     required this.editado,
-    //required this.email,
+    required this.email,
     required this.fechaCreacion,
     required this.historial,
     required this.id,
-    //required this.solicitante,
+    required this.solicitante,
     required this.status,
   });
 
   final List<Response> componentes;
-  //final String creator;
+  final String creator;
   final bool editado;
-  //final String email;
+  final String email;
   final String fechaCreacion;
   final List<Object> historial;
   final String? id;
-  //final String solicitante;
+  final String solicitante;
   final String status;
 
   toMap() => {
         'componentes': componentes.map((e) => e.toMap()),
-        //'creator': creator,
+        'creator': creator,
         'editado': editado,
-        //'email': email,
+        'email': email,
         'fechaCreacion': fechaCreacion,
         'historial': historial,
         'id': id,
-        //'solicitante': solicitante,
+        'solicitante': solicitante,
         'status': status,
         'paperlessPackage': true,
       };

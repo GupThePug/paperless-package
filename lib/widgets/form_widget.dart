@@ -223,18 +223,19 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
       ));
     }
     final firebase = ref.read(firebaseProvider(widget.basicRequest.appName));
+    final requesterInfo = widget.basicRequest.requesterInfo;
     final request = Answer(
       componentes: answers,
-      //creator: requesterInfo.userName,
+      creator: requesterInfo.userName,
       editado: false,
-      //email: requesterInfo.userMail,
+      email: requesterInfo.userMail,
       fechaCreacion: DateFormat(
         'dd/MM/yyyy, HH:mm:ss',
         'es',
       ).format(DateTime.now()),
       historial: [],
       id: answerId,
-      //solicitante: requesterInfo.userId,
+      solicitante: requesterInfo.userId,
       status: 'waiting',
     );
 

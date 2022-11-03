@@ -70,13 +70,13 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
   }
 
   createForm(PaperlessForm form, BuildContext context) {
-    /*if (form.hidden || !form.status && false) {
+    if (form.hidden || !form.status && false) {
       return const CustomMessageWidget(
         title: "Error",
         subTitle: "Formulario no disponle.",
         icon: Icon(Icons.warning),
       );
-    }*/
+    }
 
     form.components.sort(
       (a, b) => (a.layout["y"] as int).compareTo((b.layout["y"] as int)),

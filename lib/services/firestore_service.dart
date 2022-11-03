@@ -65,8 +65,9 @@ class FirestoreService {
         : FirebaseFirestore.instance;
 
     final formCollection =
-        instance.collection('Empresas').doc(companyId).collection("Formularios");
-    return formCollection.doc(formId).id;
+        instance.collection('Empresas').doc(companyId).collection("Formularios").doc(formId);
+    print(formCollection.id);
+    return formCollection.id;
   }
 
   Future<void> createData<T>({

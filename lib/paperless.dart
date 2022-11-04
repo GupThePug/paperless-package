@@ -84,7 +84,7 @@ class FlutterPaperless extends ConsumerWidget {
         if (notifyErrors != null) notifyErrors!(e, s);
         return const CustomMessageWidget(
           title: "Error",
-          subTitle: "Error al cargar el formulario, contacte a soporte.",
+          subTitle: "Error al cargar el formulario, contacte a soporte. (--DEBUGGER--)",
           icon: Icon(Icons.error),
         );
       },

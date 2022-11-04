@@ -44,13 +44,13 @@ class PaperlessForm {
 
   factory PaperlessForm.fromMap(Map<String, dynamic> data) {
     final id = (data['id'] ?? "").toString();
-    final name = (data['nombre'] ?? "").toString();
+    final name = (data['Nombre'] ?? "").toString();
     final hidden = (data['hidden'] ?? false) as bool;
     final status = (data['status'] ?? false) as bool;
     final language = data['idioma'];
     List<ControlItem> components = [];
 
-    (data['Componentes'] as Map<String, dynamic>).forEach((key, value) {
+    (data['componentes'] as Map<String, dynamic>).forEach((key, value) {
       components.add(ControlItem.fromMap(value));
     });
 

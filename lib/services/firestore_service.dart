@@ -81,6 +81,7 @@ class FirestoreService {
         : FirebaseFirestore.instance;
 
     docId ??= instance.collection(path).doc().id;
+    print(docId);
     return instance.collection(path).doc(docId).set(builder(data));
   }
 }

@@ -59,6 +59,7 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
       data: (form) => createForm(form, context),
       error: (e, s) {
         if (widget.notifyErrors != null) widget.notifyErrors!(e, s);
+        print(widget.notifyErrors);
         return const CustomMessageWidget(
           title: "Error",
           subTitle: "Error al cargar el formulario, contacte a soporte.",

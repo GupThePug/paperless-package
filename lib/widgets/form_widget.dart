@@ -73,11 +73,11 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
     if (form.hidden || !form.status && false) {
       return const CustomMessageWidget(
         title: "Error",
-        subTitle: "Formulario no disponle.",
+        subTitle: "Formulario no disponible.",
         icon: Icon(Icons.warning),
       );
     }
-
+    //Ordenar componentes por su posición en el eje y
     form.components.sort(
       (a, b) => (a.layout["y"] as int).compareTo((b.layout["y"] as int)),
     );
@@ -87,17 +87,23 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
 
     for (var item in form.components) {
       if (controlsUsed.contains(item.id)) continue;
+      //Agregar a una row todos los componentes con el mismo valor de y
+      //que el componente actual
       final horizontal = form.components
           .where((e) => e.layout["y"] == item.layout["y"])
           .toList();
 
+      //Si hay más de un componente en la misma row
       if (horizontal.length > 1) {
+        //Marcar todos los componentes de la row como usados
         controlsUsed.addAll(horizontal.map((e) => e.id));
+        //Ordenar componentes en el eje x
         horizontal.sort(
           (a, b) => (a.layout["x"] as int).compareTo((b.layout["x"] as int)),
         );
 
-        List<Widget> controlH = [const SizedBox(width: 10)];
+        //Operaciones para agregar Expanded y SizedBox entre componentes horizontales
+        List<Widget> controlH = [const SizedBox(width: 10), Container(width: 10, decoration: BoxDecoration(color: Colors.blue))];
         int auxTemp = 0;
         int auxIndex = 0;
         for (var element in horizontal) {
@@ -120,6 +126,7 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
           auxIndex++;
         }
         controlH.add(Expanded(flex: 6 - auxTemp, child: Container()));
+        //Envolver widgets en padding y row y añadir a la lista de campos del form
         controls.add(
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
@@ -129,11 +136,17 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
             ),
           ),
         );
+        //Cuando la row tiene un solo campo
       } else {
+        // Size 6 es lo máximo que puede tener un campo
         int size = 6 - item.layout['w'] as int;
+        //Mover según la posición en x
         int startPosition = item.layout['x'] as int;
         if (startPosition > 0) size -= startPosition;
+        //Marcar el componente como usado
         controlsUsed.add(item.id);
+        //Añadir el campo envuelto en una row con Expanded y SizedBox para empujar
+        //al componente a la posición en x deseada
         controls.add(Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -155,7 +168,9 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
       }
     }
 
+    //Si el form tiene campos
     if (controls.isNotEmpty) {
+      //Añadir a la lista de componentes el botón para subirlo
       controls.add(
         Align(
           alignment: Alignment.centerRight,
@@ -198,8 +213,10 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
       );
     }
 
+    //El form es un expanded con un scroll y todos los componentes adentro
     return Expanded(
       child: SingleChildScrollView(
+        padding: EdgeInsets.only(right: 15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: controls,
@@ -208,8 +225,10 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
     );
   }
 
+  // Checar si hay algún campo requiered que no haya sido contestado
   _validateAndSaveForm(List<ControlItem> components) => !components.any((e) =>
       (e.propierties["required"] ?? false) && e.propierties["answer"] == null);
+
 
   _saveForm(PaperlessForm form) async {
     List<Response> answers = [];
@@ -301,8 +320,9 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
               ? [FilteringTextInputFormatter.digitsOnly]
               : null,
           decoration: InputDecoration(
+            fillColor: Colors.purple,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(10),
             ),
             hintText: language?['placeholder'] ?? '',
           ),
@@ -529,7 +549,7 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
           ),
         );
         break;
-      case 'ratbe':
+      case 'rate':
         control = RatingBar.builder(
           initialRating: item.propierties["answer"] ?? 0,
           minRating: 1,
@@ -544,7 +564,7 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
           onRatingUpdate: (rating) => item.propierties["answer"] = rating,
         );
         break;
-      case 'upload':
+      case 'upComponent':
         List<Widget> list = [
           OutlinedButton(
             onPressed: () async {
@@ -808,7 +828,7 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
           children: list,
         );
         break;
-      case 'textarea1':
+      case 'textarea':
         final HtmlEditorController controller = HtmlEditorController();
         control = Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
@@ -821,6 +841,11 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
           ),
         );
         break;
+
+      case 'multipleselect':
+        print("wowza");
+        break;
+
       // todo hacer el multi-Select
       /* if (item.propierties['mode'] == 'default') {
           return DropdownButton(
@@ -868,13 +893,13 @@ class _FormWidgetPageState extends ConsumerState<FormWidgetPage> {
     List<dynamic>? answer,
     bool isMultiFile,
     String formId,
-    String companyId,
+      String companyId,
     String controlId,
   ) async {
     final firebase = ref.read(firebaseProvider(widget.basicRequest.appName));
     answerId ??= await firebase.getDocumentId(
-      formId: formId,
       companyId: companyId,
+      formId: formId,
       saveInPaperless: widget.basicRequest.saveInPaperless,
     );
 

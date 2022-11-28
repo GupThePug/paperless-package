@@ -22,7 +22,7 @@ class FirestoreService {
     required String path,
     required T Function(Map<String, dynamic> data, String documentID) builder,
     Query<Map<String, dynamic>> Function(Query<Map<String, dynamic>> query)?
-        queryBuilder,
+    queryBuilder,
     int Function(T lhs, T rhs)? sort,
   }) {
     Query<Map<String, dynamic>> query = FirebaseFirestore.instanceFor(
@@ -50,9 +50,9 @@ class FirestoreService {
         .doc(idDoc)
         .snapshots()
         .map((snapshot) => builder(
-              snapshot.data() as Map<String, dynamic>,
-              snapshot.id,
-            ));
+      snapshot.data() as Map<String, dynamic>,
+      snapshot.id,
+    ));
   }
 
   Future<String> getDocumentId({

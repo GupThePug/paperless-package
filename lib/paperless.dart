@@ -5,7 +5,7 @@
 
 * ----- Collaborators:
 * ----- @GupThePug
-* ----- @BetoMacias 
+* ----- @BetoMacias
 * */
 library paperless;
 
@@ -107,11 +107,11 @@ class FlutterPaperless extends ConsumerWidget {
     }
     return FormWidgetPage(
       basicRequest: PaperlessRequest(
-        saveInPaperless: saveInPaperless,
-        requesterInfo: requesterInfo,
-        appName: paperlessConfig.appName,
-        formId: formId,
-        companyId: companyId
+          saveInPaperless: saveInPaperless,
+          requesterInfo: requesterInfo,
+          appName: paperlessConfig.appName,
+          formId: formId,
+          companyId: companyId
       ),
       loadingWidget: loadingWidget,
       notifyErrors: notifyErrors,

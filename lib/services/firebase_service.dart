@@ -18,7 +18,7 @@ import 'package:paperless/services/firestorage_service.dart';
 import 'package:paperless/services/firestore_service.dart';
 
 final firebaseProvider =
-    Provider.family<FirebaseService, String>((ref, appName) {
+Provider.family<FirebaseService, String>((ref, appName) {
   return FirebaseService(appName: appName);
 });
 
@@ -40,12 +40,12 @@ class FirebaseService {
       );
 
   UploadTask uploadFile(
-    String path,
-    Uint8List? file,
-    String? filePath,
-    SettableMetadata metadata,
-    bool saveInPaperless,
-  ) =>
+      String path,
+      Uint8List? file,
+      String? filePath,
+      SettableMetadata metadata,
+      bool saveInPaperless,
+      ) =>
       _storageService.uploadFile(
         path: path,
         metadata: metadata,

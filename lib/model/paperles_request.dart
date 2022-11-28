@@ -1,15 +1,3 @@
-/* ---- @SOFTTEK
-Paperless
-version: 0.0.2
-Non-public test version
-
-Collaborators:
----@GupThePug
----@BetoMacias
-
-* */
-
-
 class PaperlessRequest {
   const PaperlessRequest({
     required this.appName,
